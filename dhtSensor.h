@@ -1,5 +1,5 @@
-#ifndef __DHT_S_H__
-#define __DHT_S_H__ 1
+#ifndef __DHT_SENSOR_H__
+#define __DHT_SENSOR_H__ 1
 
 #include <DHT.h>
 

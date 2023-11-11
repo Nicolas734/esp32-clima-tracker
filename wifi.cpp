@@ -1,7 +1,8 @@
 #include "wifi.h"
+#include "ntpServer.h"
 
-const char* ssid = "";    //ADICIONE NO LUGAR DE "Fatec WiFi" A SUA REDE
-const char* password = "";  // ADICIONE SUA SENHA
+const char* ssid = "Vivo ap 28";    //ADICIONE NO LUGAR DE "Fatec WiFi" A SUA REDE
+const char* password = "29072003";  // ADICIONE SUA SENHA
 
 void connectWiFi() {
   Serial.print("Connecting");
@@ -10,6 +11,7 @@ void connectWiFi() {
     Serial.print(".");
   }
   Serial.println("Connected!");
+  iniciateNtpServer();
 }
 
 
