@@ -1,4 +1,6 @@
 #include "ntpServer.h"
+#include "wifi.h"
+
 
 const char* ntpServer = "br.pool.ntp.org";
 const long gmtOffset = 0;
@@ -17,5 +19,10 @@ void iniciateNtpServer() {
     Serial.println(".");
     delay(1000);
   }
-  Serial.print("Conectado ao NTP Server");
+  time_t timeNow;
+  time(&timeNow);
+  tm *date = gmtime(&timeNow); 
+  //Serial.print("Time Now: ");Serial.print(timeNow);
+  Serial.print("Connect to NTP Server in ");
+  Serial.print(date);
 }

@@ -6,6 +6,11 @@ TaskHandle_t tTaskDhtSensor;
 
 void setup() {
   Serial.begin(115200);
+
+  xMutexWifiState = xSemaphoreCreateMutex();
+  if (xMutexWifiState != NULL) {
+    Serial.printf("xMutexWifiState criado!\n");
+  }
   
   xTaskCreatePinnedToCore(
     taskWifi,    // função
