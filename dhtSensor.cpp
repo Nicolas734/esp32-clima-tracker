@@ -1,15 +1,12 @@
 #include "dhtSensor.h"
 #include "ntpServer.h"
 #include "wifi.h"
+#include "mqtt.h"
+#include "json.h"
 
 #define DHTPIN 4
 #define DHTTYPE DHT11
 
-typedef struct {
-  uint32_t unx;
-  float value;
-  uint8_t type;
-} Package_T;
 
 DHT dhtSensor(DHTPIN, DHTTYPE);
 time_t datetime;
@@ -20,9 +17,8 @@ void getTemperature() {
   packet.type = TEMPERATURE;
   packet.value = dhtSensor.readTemperature();
   packet.unx = (uint32_t)datetime;
-  Serial.println(packet.type);
-  Serial.println(packet.value);
-  Serial.println(packet.unx);
+  String json = createPacketJson(packet.unx, packet.type, packet.value);
+  publishMessage(json);
 }
 
 
@@ -31,9 +27,8 @@ void getHumidity() {
   packet.type = HUMIDITY;
   packet.value = dhtSensor.readHumidity();
   packet.unx = (uint32_t)datetime;
-  Serial.println(packet.type);
-  Serial.println(packet.value);
-  Serial.println(packet.unx);
+  String json = createPacketJson(packet.unx, packet.type, packet.value);
+  publishMessage(json);
 }
 
 
@@ -43,7 +38,7 @@ void taskDhtSensor(void* parameters) {
   dhtSensor.begin();
   for (;;) {
     time(&datetime);
-    if ((datetime % 60) == 0 && get_wifi_connection_state() == CONNECTED) {
+    if ((datetime % 600) == 0 && get_wifi_connection_state() == CONNECTED) {
       getTemperature();
       getHumidity();
       delay(1000);

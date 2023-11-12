@@ -9,6 +9,12 @@ enum PACKET_TYPE{
   HUMIDITY = 2
 };
 
+typedef struct {
+  uint32_t unx;
+  float value;
+  uint8_t type;
+} Package_T;
+
 void taskDhtSensor(void* parameters);
 
 #endif

@@ -2,8 +2,8 @@
 #include "ntpServer.h"
 #include "wifiConfigs.h"
 
-const char* ssid = WIFI_NAME;    //ADICIONE NO LUGAR DE "Fatec WiFi" A SUA REDE
-const char* password = WIFI_PASSWORD;  // ADICIONE SUA SENHA
+const char* ssid = WIFI_NAME;
+const char* password = WIFI_PASSWORD;
 uint8_t wifi_is_connected = 0;
 SemaphoreHandle_t xMutexWifiState;
 
