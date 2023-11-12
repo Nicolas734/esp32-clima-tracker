@@ -28,7 +28,7 @@ void connectWiFi() {
     delay(500);
     Serial.print(".");
   }
-  change_wifi_connection_state(1);
+  change_wifi_connection_state(CONNECTED);
   Serial.println("Connected!");
   iniciateNtpServer();
 }
@@ -39,7 +39,7 @@ void taskWifi(void* parameters) {
   WiFi.begin(ssid, password);
   for (;;) {
     if (WiFi.status() != WL_CONNECTED) {
-      change_wifi_connection_state(0);
+      change_wifi_connection_state(NO_CONNECTION);
       Serial.println("No Connection Wifi...");
       connectWiFi();
     }

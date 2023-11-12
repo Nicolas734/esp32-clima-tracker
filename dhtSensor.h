@@ -4,6 +4,10 @@
 #include <DHT.h>
 
 //extern DHT dhtSensor;
+enum PACKET_TYPE{
+  TEMPERATURE = 1,
+  HUMIDITY = 2
+};
 
 void taskDhtSensor(void* parameters);
 

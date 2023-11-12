@@ -7,12 +7,10 @@ const long gmtOffset = 0;
 const int daylight = 0;
 
 
-time_t datetime;
-time_t adjustedTime;
-struct tm timeinfo;
-
 
 void iniciateNtpServer() {
+  time_t datetime;
+  struct tm timeinfo;
   configTime(gmtOffset, daylight, ntpServer);
   Serial.println("Aguardando conexão com o NTP server");
   while (!getLocalTime(&timeinfo)) {
@@ -21,8 +19,7 @@ void iniciateNtpServer() {
   }
   time_t timeNow;
   time(&timeNow);
-  tm *date = gmtime(&timeNow); 
-  //Serial.print("Time Now: ");Serial.print(timeNow);
+  tm *date = gmtime(&timeNow);
   Serial.print("Connect to NTP Server in ");
   Serial.print(date);
 }

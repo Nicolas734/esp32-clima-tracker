@@ -15,7 +15,7 @@ void setup() {
   xTaskCreatePinnedToCore(
     taskWifi,    // função
     "tTaskWifi",  // nome da tarefa
-    10000,           // tamanho da pilha da tarefa
+    5000,           // tamanho da pilha da tarefa
     NULL,            // parâmetros da tarefa
     1,               // prioridade da tarefa
     &tTaskWifi,         // handle da tarefa
@@ -25,7 +25,7 @@ void setup() {
   xTaskCreatePinnedToCore(
     taskDhtSensor,    //function name
     "tTaskDhtSensor",  //task name
-    10000,           // task stack size
+    5000,           // task stack size
     NULL,            // task parameters
     1,               // task priority
     &tTaskDhtSensor,         // task handle

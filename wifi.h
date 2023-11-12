@@ -3,6 +3,13 @@
 
 #include <WiFi.h>
 
+
+enum WIFI_STATE{
+  NO_CONNECTION = 0,
+  CONNECTED = 1
+};
+
+
 void connectWiFi();
 void taskWifi(void *parameters);
 void change_wifi_connection_state(uint8_t state);
