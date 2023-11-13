@@ -3,6 +3,6 @@
 
 #include <ArduinoJson.h>
 
-String createPacketJson(uint32_t unx, uint8_t type, float value);
+String createPacketJson(uint64_t uid, uint32_t unx, uint8_t type, float value);
 
 #endif

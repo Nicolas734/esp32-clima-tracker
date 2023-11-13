@@ -4,7 +4,8 @@
 StaticJsonDocument<200> doc;
 
 
-String createPacketJson(uint32_t unx, uint8_t type, float value) {
+String createPacketJson(uint64_t uid, uint32_t unx, uint8_t type, float value) {
+  doc["uid"] = uid;
   doc["unx"] = unx;
   doc["value"] = value;
   doc["type"] = type;

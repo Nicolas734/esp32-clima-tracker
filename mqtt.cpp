@@ -39,7 +39,7 @@ void publishMessage(String msg) {
 
 void taskMqtt(void* parameters) {
   delay(10000);
-  Serial.println("\nTaskQtt Iniciada");
+  Serial.println("TaskMqtt Iniciada");
   client.setServer(mqtt_broker, mqtt_port);
   for (;;) {
     if (!client.connected()) {

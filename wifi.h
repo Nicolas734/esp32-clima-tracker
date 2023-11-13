@@ -16,5 +16,6 @@ void change_wifi_connection_state(uint8_t state);
 uint8_t get_wifi_connection_state();
 
 extern SemaphoreHandle_t xMutexWifiState;
+extern uint64_t uuid;
 
 #endif

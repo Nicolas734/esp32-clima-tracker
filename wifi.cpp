@@ -7,6 +7,8 @@ const char* password = WIFI_PASSWORD;
 uint8_t wifi_is_connected = 0;
 SemaphoreHandle_t xMutexWifiState;
 
+uint64_t uuid;
+
 
 void change_wifi_connection_state(uint8_t state) {
   xSemaphoreTake(xMutexWifiState, portMAX_DELAY);
@@ -20,6 +22,12 @@ uint8_t get_wifi_connection_state() {
   uint8_t state = wifi_is_connected;
   xSemaphoreGive(xMutexWifiState);
   return state;
+}
+
+
+uint64_t macAddressStrToUint64(String mac_address) {
+  char* endPtr;
+  return strtoull(mac_address.c_str(), &endPtr, 16);
 }
 
 
@@ -37,6 +45,10 @@ void connectWiFi() {
 
 void taskWifi(void* parameters) {
   Serial.println("TaskWifi Iniciada");
+  String mac_address = WiFi.macAddress();
+  mac_address.replace(":", "");
+  uuid = macAddressStrToUint64(mac_address);
+  Serial.println(uuid);
   WiFi.begin(ssid, password);
   for (;;) {
     if (WiFi.status() != WL_CONNECTED) {

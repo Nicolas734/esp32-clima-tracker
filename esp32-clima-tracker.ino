@@ -2,9 +2,11 @@
 #include "dhtSensor.h"
 #include "mqtt.h"
 
+
 TaskHandle_t tTaskWifi;
 TaskHandle_t tTaskDhtSensor;
 TaskHandle_t tTaskMqtt;
+
 
 void setup() {
   Serial.begin(115200);
